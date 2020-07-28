@@ -1,0 +1,23 @@
+[package]
+name = "init_trait"
+description = "A small helper trait to simplify the initialisation of 'indexable' data structures"
+keywords = ["init", "trait", "array", "vec", "2d"]
+categories = ["data-structures", "rust-patterns", "no-std"]
+documentation = "https://docs.rs/init_trait"
+homepage = "https://github.com/LukeMiles49/init-trait-rs"
+version = "0.1.0"
+authors = ["Luke Miles <luke.49@live.co.uk>"]
+license = "MIT"
+repository = "https://github.com/LukeMiles49/init-trait-rs"
+readme = "README.md"
+edition = "2018"
+
+[dependencies]
+
+[dev-dependencies]
+version-sync = "0.9"
+
+[features]
+default = ["std"]
+std = []
+alloc = []
