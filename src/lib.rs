@@ -63,7 +63,7 @@ assert_eq!(road[2].number, 3);
 
 #![feature(const_generics)]
 
-#![doc(html_root_url = "https://docs.rs/init_trait/0.1.0")]
+#![doc(html_root_url = "https://docs.rs/init_trait/0.2.0")]
 
 // FIXME (#20041): Replace this workaround with real type equality constraints
 mod type_equals;
@@ -140,31 +140,31 @@ impl<T, const N: usize> Init<T, usize> for [T; N] {
 
 impl<T, const N1: usize, const N2: usize> Init<T, [usize; 2]> for [[T; N1]; N2] {
 	fn init_with<F: FnMut([usize; 2]) -> T>(_: (), mut elem: F) -> Self {
-		Self::init(|i2| <[T; N1]>::init(|i1| elem([i1, i2])))
+		Self::init(|i1| <[T; N1]>::init(|i2| elem([i1, i2])))
 	}
 }
 
 impl<T, const N1: usize, const N2: usize, const N3: usize> Init<T, [usize; 3]> for [[[T; N1]; N2]; N3] {
 	fn init_with<F: FnMut([usize; 3]) -> T>(_: (), mut elem: F) -> Self {
-		Self::init(|i3| <[[T; N1]; N2]>::init(|[i1, i2]: [usize; 2]| elem([i1, i2, i3])))
+		Self::init(|i1| <[[T; N1]; N2]>::init(|[i2, i3]: [usize; 2]| elem([i1, i2, i3])))
 	}
 }
 
 impl<T, const N1: usize, const N2: usize, const N3: usize, const N4: usize> Init<T, [usize; 4]> for [[[[T; N1]; N2]; N3]; N4] {
 	fn init_with<F: FnMut([usize; 4]) -> T>(_: (), mut elem: F) -> Self {
-		Self::init(|i4| <[[[T; N1]; N2]; N3]>::init(|[i1, i2, i3]: [usize; 3]| elem([i1, i2, i3, i4])))
+		Self::init(|i1| <[[[T; N1]; N2]; N3]>::init(|[i2, i3, i4]: [usize; 3]| elem([i1, i2, i3, i4])))
 	}
 }
 
 impl<T, const N1: usize, const N2: usize, const N3: usize, const N4: usize, const N5: usize> Init<T, [usize; 5]> for [[[[[T; N1]; N2]; N3]; N4]; N5] {
 	fn init_with<F: FnMut([usize; 5]) -> T>(_: (), mut elem: F) -> Self {
-		Self::init(|i5| <[[[[T; N1]; N2]; N3]; N4]>::init(|[i1, i2, i3, i4]: [usize; 4]| elem([i1, i2, i3, i4, i5])))
+		Self::init(|i1| <[[[[T; N1]; N2]; N3]; N4]>::init(|[i2, i3, i4, i5]: [usize; 4]| elem([i1, i2, i3, i4, i5])))
 	}
 }
 
 impl<T, const N1: usize, const N2: usize, const N3: usize, const N4: usize, const N5: usize, const N6: usize> Init<T, [usize; 6]> for [[[[[[T; N1]; N2]; N3]; N4]; N5]; N6] {
 	fn init_with<F: FnMut([usize; 6]) -> T>(_: (), mut elem: F) -> Self {
-		Self::init(|i6| <[[[[[T; N1]; N2]; N3]; N4]; N5]>::init(|[i1, i2, i3, i4, i5]: [usize; 5]| elem([i1, i2, i3, i4, i5, i6])))
+		Self::init(|i1| <[[[[[T; N1]; N2]; N3]; N4]; N5]>::init(|[i2, i3, i4, i5, i6]: [usize; 5]| elem([i1, i2, i3, i4, i5, i6])))
 	}
 }
 

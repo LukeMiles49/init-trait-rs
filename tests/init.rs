@@ -29,21 +29,21 @@ fn init_array() {
 
 #[test]
 fn init_2d_array() {
-	let arr = <[[(usize, usize); 12]; 34] as Init<(usize, usize), [usize; 2]>>::init(|[x, y]| (x, y));
+	let arr = <[[(usize, usize); 34]; 12] as Init<(usize, usize), [usize; 2]>>::init(|[x, y]| (x, y));
 	for x in 0..12 {
 		for y in 0..34 {
-			assert_eq!(arr[y][x], (x, y));
+			assert_eq!(arr[x][y], (x, y));
 		}
 	}
 }
 
 #[test]
 fn init_3d_array() {
-	let arr = <[[[(usize, usize, usize); 12]; 23]; 34] as Init<(usize, usize, usize), [usize; 3]>>::init(|[x, y, z]| (x, y, z));
+	let arr = <[[[(usize, usize, usize); 34]; 23]; 12] as Init<(usize, usize, usize), [usize; 3]>>::init(|[x, y, z]| (x, y, z));
 	for x in 0..12 {
 		for y in 0..23 {
 			for z in 0..34 {
-				assert_eq!(arr[z][y][x], (x, y, z));
+				assert_eq!(arr[x][y][z], (x, y, z));
 			}
 		}
 	}
@@ -51,12 +51,12 @@ fn init_3d_array() {
 
 #[test]
 fn init_4d_array() {
-	let arr = <[[[[(usize, usize, usize, usize); 2]; 3]; 4]; 5] as Init<(usize, usize, usize, usize), [usize; 4]>>::init(|[w, x, y, z]| (w, x, y, z));
+	let arr = <[[[[(usize, usize, usize, usize); 5]; 4]; 3]; 2] as Init<(usize, usize, usize, usize), [usize; 4]>>::init(|[w, x, y, z]| (w, x, y, z));
 	for w in 0..2 {
 		for x in 0..3 {
 			for y in 0..4 {
 				for z in 0..5 {
-					assert_eq!(arr[z][y][x][w], (w, x, y, z));
+					assert_eq!(arr[w][x][y][z], (w, x, y, z));
 				}
 			}
 		}
@@ -65,13 +65,13 @@ fn init_4d_array() {
 
 #[test]
 fn init_5d_array() {
-	let arr = <[[[[[(usize, usize, usize, usize, usize); 2]; 3]; 4]; 5]; 6] as Init<(usize, usize, usize, usize, usize), [usize; 5]>>::init(|[v, w, x, y, z]| (v, w, x, y, z));
+	let arr = <[[[[[(usize, usize, usize, usize, usize); 6]; 5]; 4]; 3]; 2] as Init<(usize, usize, usize, usize, usize), [usize; 5]>>::init(|[v, w, x, y, z]| (v, w, x, y, z));
 	for v in 0..2 {
 		for w in 0..3 {
 			for x in 0..4 {
 				for y in 0..5 {
 					for z in 0..6 {
-						assert_eq!(arr[z][y][x][w][v], (v, w, x, y, z));
+						assert_eq!(arr[v][w][x][y][z], (v, w, x, y, z));
 					}
 				}
 			}
@@ -81,14 +81,14 @@ fn init_5d_array() {
 
 #[test]
 fn init_6d_array() {
-	let arr = <[[[[[[(usize, usize, usize, usize, usize, usize); 2]; 3]; 4]; 3]; 4]; 5] as Init<(usize, usize, usize, usize, usize, usize), [usize; 6]>>::init(|[u, v, w, x, y, z]| (u, v, w, x, y, z));
+	let arr = <[[[[[[(usize, usize, usize, usize, usize, usize); 5]; 4]; 3]; 4]; 3]; 2] as Init<(usize, usize, usize, usize, usize, usize), [usize; 6]>>::init(|[u, v, w, x, y, z]| (u, v, w, x, y, z));
 	for u in 0..2 {
 		for v in 0..3 {
 			for w in 0..4 {
 				for x in 0..3 {
 					for y in 0..4 {
 						for z in 0..5 {
-							assert_eq!(arr[z][y][x][w][v][u], (u, v, w, x, y, z));
+							assert_eq!(arr[u][v][w][x][y][z], (u, v, w, x, y, z));
 						}
 					}
 				}

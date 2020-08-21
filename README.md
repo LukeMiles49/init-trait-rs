@@ -6,6 +6,8 @@
 
 [Repository](https://github.com/LukeMiles49/init-trait-rs)
 
+[Changelog](https://github.com/LukeMiles49/init-trait-rs/blob/master/CHANGELOG.md)
+
 A small helper trait to simplify the initialisation of 'indexable' data structures.
 
 ```rust
@@ -24,5 +26,5 @@ assert_eq!(road[2].number, 3);
 To use this, add it as a dependency to your Cargo.toml:
 ```toml
 [dependencies]
-init_trait = "0.1.0"
+init_trait = "0.2.0"
 ```
